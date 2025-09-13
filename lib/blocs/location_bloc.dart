@@ -47,7 +47,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     emit(LocationLoading());
     
     try {
-      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      final bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         emit(LocationDisabled());
         return;
@@ -67,7 +67,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         return;
       }
 
-      Position position = await Geolocator.getCurrentPosition();
+      final Position position = await Geolocator.getCurrentPosition();
       emit(LocationEnabled(position));
       
       // Start listening to position updates

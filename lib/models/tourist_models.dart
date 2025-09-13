@@ -124,3 +124,41 @@ class LatLngPoint {
 
   LatLngPoint(this.latitude, this.longitude);
 }
+
+class LocationSafetyScore {
+  final String locationName;
+  final double latitude;
+  final double longitude;
+  final int safetyScore; // 0-100 (higher is safer)
+  final String riskLevel; // 'low', 'medium', 'high'
+  final List<String> safetyFactors;
+  final List<String> riskFactors;
+  final DateTime lastUpdated;
+
+  LocationSafetyScore({
+    required this.locationName,
+    required this.latitude,
+    required this.longitude,
+    required this.safetyScore,
+    required this.riskLevel,
+    required this.safetyFactors,
+    required this.riskFactors,
+    required this.lastUpdated,
+  });
+
+  String get safetyGrade {
+    if (safetyScore >= 80) return 'A';
+    if (safetyScore >= 60) return 'B';
+    if (safetyScore >= 40) return 'C';
+    if (safetyScore >= 20) return 'D';
+    return 'F';
+  }
+
+  String get safetyDescription {
+    if (safetyScore >= 80) return 'Very Safe';
+    if (safetyScore >= 60) return 'Safe';
+    if (safetyScore >= 40) return 'Moderate Risk';
+    if (safetyScore >= 20) return 'High Risk';
+    return 'Dangerous';
+  }
+}

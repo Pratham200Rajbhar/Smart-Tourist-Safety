@@ -108,7 +108,7 @@ class TouristBloc extends Bloc<TouristEvent, TouristState> {
       
       if (updatedTourist.isInDangerZone) {
         emit(DangerZoneAlert(
-          "⚠️ You are in a Risky Area! Return to Safe Zone.",
+          '⚠️ You are in a Risky Area! Return to Safe Zone.',
           updatedTourist,
         ));
       }
@@ -126,15 +126,15 @@ class TouristBloc extends Bloc<TouristEvent, TouristState> {
   void _onSendSOS(SendSOS event, Emitter<TouristState> emit) {
     try {
       final sosAlert = SOSAlert(
-        id: "sos_${DateTime.now().millisecondsSinceEpoch}",
+        id: 'sos_${DateTime.now().millisecondsSinceEpoch}',
         touristId: DemoData.currentTourist.id,
         touristName: DemoData.currentTourist.name,
         digitalId: DemoData.currentTourist.digitalId,
         lat: event.lat,
         lng: event.lng,
         timestamp: DateTime.now(),
-        severity: "high",
-        status: "active",
+        severity: 'high',
+        status: 'active',
       );
       
       DemoData.sosAlerts.insert(0, sosAlert);
@@ -147,9 +147,9 @@ class TouristBloc extends Bloc<TouristEvent, TouristState> {
 
   void _onGenerateDigitalId(GenerateDigitalId event, Emitter<TouristState> emit) {
     try {
-      final digitalId = "${AppConstants.digitalIdPrefix}${DateTime.now().millisecondsSinceEpoch}";
+      final digitalId = '${AppConstants.digitalIdPrefix}${DateTime.now().millisecondsSinceEpoch}';
       final tourist = Tourist(
-        id: "user_${DateTime.now().millisecondsSinceEpoch}",
+        id: 'user_${DateTime.now().millisecondsSinceEpoch}',
         name: event.name,
         digitalId: digitalId,
         lat: AppConstants.defaultLat,
